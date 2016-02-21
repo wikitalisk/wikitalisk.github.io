@@ -25,7 +25,7 @@
 
 'use strict';
 
-var DEFAULT_URL = 'http://blog.talisk.cn/resume.pdf';
+var DEFAULT_URL = 'http://wiki.talisk.cn/resume.pdf';
 var DEFAULT_SCALE_DELTA = 1.1;
 var MIN_SCALE = 0.25;
 var MAX_SCALE = 10.0;
