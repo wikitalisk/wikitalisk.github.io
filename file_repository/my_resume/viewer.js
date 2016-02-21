@@ -25,7 +25,7 @@
 
 'use strict';
 
-var DEFAULT_URL = 'document.pdf';
+var DEFAULT_URL = 'http://blog.talisk.cn/resume.pdf';
 var DEFAULT_SCALE_DELTA = 1.1;
 var MIN_SCALE = 0.25;
 var MAX_SCALE = 10.0;
@@ -35,9 +35,9 @@ var PAGE_NUMBER_LOADING_INDICATOR = 'visiblePageIsLoading';
 var DISABLE_AUTO_FETCH_LOADING_BAR_TIMEOUT = 5000;
 
 function configure(PDFJS) {
-  PDFJS.imageResourcesPath = '/images/';
-  PDFJS.workerSrc = 'pdf.worker.js';
-  PDFJS.cMapUrl = '/cmaps/';
+  PDFJS.imageResourcesPath = 'http://wiki.talisk.cn/file_repository/my_resume/images/';
+  PDFJS.workerSrc = 'http://wiki.talisk.cn/file_repository/my_resume/pdf.worker.js';
+  PDFJS.cMapUrl = 'http://wiki.talisk.cn/file_repository/my_resume/cmaps/';
   PDFJS.cMapPacked = true;
 }
 
