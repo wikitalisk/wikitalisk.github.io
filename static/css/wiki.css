@@ -83,6 +83,31 @@ body {
     font-size:90%;
 }
 
+@media (max-width: 500px) and (orientation: portrait) {
+    body {
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+    h4 {
+        font-size: 1.4em;
+    }
+    h5 {
+        font-size: 1.2em;
+    }
+    h6 {
+        font-size: 1em;
+    }
+}
+
 .nav {
     /*width: 85%;*/
     padding-right:0px;
