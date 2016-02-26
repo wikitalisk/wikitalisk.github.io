@@ -1,7 +1,3 @@
-body {
-	padding: 70px;
-}
-
 /* classes for items of todo lists */
 .done0 {
     /* list-style: none; */
@@ -113,18 +109,26 @@ body {
     padding-right:0px;
 }
 
-.footer
-  background: color-footer-background
-  padding: 50px 0
-  border-top: 1px solid color-border
-  color: color-grey
-  a
-    color: color-link
-    text-decoration: none
-    &:hover
-      text-decoration: underline
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  padding: 70px;
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #222;
+}
 
-.footer-info
-  line-height: line-height
-  font-size: 0.85em
-
+.text-muted {
+  margin: 20px 0;
+  color: #9d9d9d;
+}
