@@ -129,6 +129,76 @@ body {
 }
 
 .text-muted {
-  margin: 20px 0;
+  margin: 20px;
   color: #9d9d9d;
+}
+
+.label-networking {
+    content: "网络";
+    background-color: #11aaff;
+}
+.label-image {
+    content: "图像";
+    background-color: #ffc22b;
+}
+.label-saving {
+    content: "持久化";
+    background-color: #26e0a5;
+}
+.label-model {
+    content: "model";
+    background-color: #338f72;
+}
+.label-layout {
+    content: "布局";
+    background-color: #cc88aa;
+}
+.label-struct {
+    content: "框架";
+    background-color: #aaaa22;
+}
+.label-debuging {
+    content: "调试";
+    background-color: #ff88bb;
+}
+.label-performance {
+    content: "性能";
+    background-color: #e73484;
+}
+
+.label-UI-gesture {
+    content: "手势";
+    background-color: #7f854d;
+}
+.label-UI-label {
+    content: "label";
+    background-color: #4d7985;
+}
+.label-UI-cell {
+    content: "cell";
+    background-color: #4d6d85;
+}
+.label-UI-navigation {
+    content: "navigation";
+    background-color: #854d7e;
+}
+.label-UI-tabbar {
+    content: "tabbar";
+    background-color: #534d85;
+}
+.label-UI-drawer {
+    content: "抽屉";
+    background-color: #4d8570;
+}
+.label-UI-hud {
+    content: "指示层";
+    background-color: #248574;
+}
+.label-UI-av {
+    content: "音视频";
+    background-color: #7b2485;
+}
+.label-UI-other {
+    content: "other";
+    background-color: #717171;
 }
