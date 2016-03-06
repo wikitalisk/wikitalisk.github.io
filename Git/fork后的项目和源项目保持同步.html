@@ -47,22 +47,34 @@
 
 <div class="container content-body">
 	
+<h1 id="toc_1">fork后的项目和源项目保持同步</h1>
+
 <ol>
 <li>
-fork后的项目和源项目保持同步
+保证fork后的仓库和本地仓库同步
+
+<li>
+<code>git remote -v</code> 查看所有远程仓库
+
+<li>
+若没有源仓库 <code>git remote add upstream URL</code>
+
+<li>
+<code>git fetch upstream</code> 从远程源仓库拉取
+
+<li>
+<code>git checkout master</code> 切换到master分支
+
+<li>
+<code>git merge upstream/master</code> 合并远程源仓库和本地仓库
+
+<li>
+<code>git pull upstream master</code> 拉取远程仓库更新
+
+<li>
+<code>git push -u origin master</code> 把仓库更新推到fork后的仓库上
 
 </ol>
-
-<p>
-1. 保证fork后的仓库和本地仓库同步
-2. <code>git remote -v</code> 查看所有远程仓库
-3. 若没有源仓库 <code>git remote add upstream URL</code>
-4. <code>git fetch upstream</code> 从远程源仓库拉取
-5. <code>git checkout master</code> 切换到master分支
-6. <code>git merge upstream/master</code> 合并远程源仓库和本地仓库
-7. <code>git pull upstream master</code> 拉取远程仓库更新
-8. <code>git push -u origin master</code> 把仓库更新推到fork后的仓库上
-</p>
 
 </div>
 <footer class="footer">
