@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<link rel="Stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
+<link rel="Stylesheet" type="text/css" href="../static/css/wiki.css">
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/wiki.js"></script>
+<title>CodePush</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+   <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" 
+         data-target="#example-navbar-collapse">
+         <span class="sr-only">切换导航</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">talisk's Wiki</a>
+   </div>
+   <div class="collapse navbar-collapse" id="example-navbar-collapse">
+      <ul class="nav navbar-nav">
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Wiki<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="/iOS/iOS.html">iOS</a></li>
+               <li><a href="/ReactNative/ReactNative.html">React Native</a></li>
+               <li class="divider"></li>
+               <li><a href="/Git/Git.html">Git</a></li>
+            </ul>
+         </li>
+         <li><a href="/Wishlist.html">愿望清单</a></li>
+         <li><a href="/Books.html">书单</a></li>
+        <!--  <li><a href="/Todo.html">待办</a></li> -->
+         <li><a href="http://www.talisk.cn/">个人主页</a></li>
+         <li><a href="http://blog.talisk.cn/">技术博客</a></li>
+      </ul>
+   </div>
+</nav>
+
+<div class="container content-body">
+	
+<h1 id="toc_1">CodePush</h1>
+
+<h2 id="toc_1.1">安装</h2>
+
+<pre  class="brush:bash">
+npm install -g code-push-cli
+</pre>
+
+<h2 id="toc_1.2">注册</h2>
+
+<pre  class="brush:bash">
+code-push register
+</pre>
+
+<p>
+弹出一个网页，使用MS/GitHub帐号登录，返回一个AccessKey，记下来粘贴到Bash中
+</p>
+
+<h2 id="toc_1.3">添加应用</h2>
+
+<pre  class="brush:bash">
+code-push app add ReactNews
+</pre>
+
+<p>
+返回两个部署，分别为Production和Staging，由于网络不好，可以把DeploymentKey记下来
+</p>
+
+<h2 id="toc_1.4">项目设置</h2>
+
+<pre  class="brush:bash">
+npm install react-native-code-push@latest --save
+</pre>
+
+<p>
+老版本的RN可以执行
+</p>
+
+<pre  class="brush:bash">
+rnpm link react-native-code-push
+</pre>
+
+<p>
+新版本RN可以直接用react-native的命令
+</p>
+
+<pre  class="brush:bash">
+react-native link react-native-code-push
+</pre>
+
+<p>
+系统会问你为Android设置的DeploymentKey
+</p>
+
+<p>
+iOS的需要手动配置，在Info.plist文件中添加CodePushDeploymentKey键
+</p>
+
+<h2 id="toc_1.5">代码配置</h2>
+
+<p>
+iOS项目中AppDelegate：
+</p>
+
+<pre  class="brush:objc">
+import "CodePush.h"
+</pre>
+
+<p>
+然后修改代码：
+</p>
+
+<pre  class="brush:objc">
+#ifdef DEBUG
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&amp;dev=true"];
+#else
+  jsCodeLocation = [CodePush bundleURL];
+</pre>
+
+<p>
+在index.ios.js的componentDidMount中写入：
+</p>
+
+<pre  class="brush:bash">
+import codePush from "react-native-code-push";
+</pre>
+
+<p>
+然后两种方式启动：
+</p>
+
+<pre  class="brush:bash">
+componentDidMount() {
+  codePush.sync();
+}
+</pre>
+
+<p>
+或者在根组件外，写：
+</p>
+
+<pre  class="brush:bash">
+class MyApp extends Component {
+  ......
+}
+......
+MyApp = codePush(MyApp);
+</pre>
+
+<h2 id="toc_1.6">打包</h2>
+
+<pre  class="brush:bash">
+react-native bundle --platform ios --entry-file index.ios.js --bundle-output ./release/main.jsbundle --assets-dest ./release --dev false
+</pre>
+
+<p>
+iOS平台 index.ios.js入口文件 包输出目录 assets输出位置 非dev模式
+</p>
+
+<ul>
+<li>
+--platform 平台名
+
+<li>
+--entry-file 入口文件
+
+<li>
+--bundle-output jsbundle输出目录
+
+<li>
+--assets-dest assets存放位置
+
+<li>
+--dev 是否dev模式
+
+</ul>
+
+<h2 id="toc_1.7">发布包</h2>
+
+<h3 id="toc_1.7.1">通用命令</h3>
+
+<pre  class="brush:bash">
+code-push release ReactNews folderName 1.0 [Staging/Production]
+</pre>
+
+<ul>
+<li>
+ReactNews 应用名
+
+<li>
+folderName 打包内容文件夹
+
+<li>
+1.0 对应Target的版本号
+
+<li>
+Staging/Production 对应部署，默认Staging
+
+</ul>
+
+<h3 id="toc_1.7.2">RN专用命令</h3>
+
+<pre  class="brush:bash">
+code-push release-react ReactNews ios
+</pre>
+
+<p>
+RN专用发布命令，自动打包，自动匹配target的version，默认发布到Staging部署
+</p>
+
+<ul>
+<li>
+ReactNews 应用名
+
+<li>
+ios 平台名
+
+</ul>
+
+<h2 id="toc_1.8">查看</h2>
+
+<pre  class="brush:bash">
+code-push deployment ls ReactNews [-k]
+</pre>
+
+<p>
+查看已发布的包，-k参数可选，默认不显示DeploymentKey
+</p>
+
+<ul>
+<li>
+ReactNews 应用名
+
+<li>
+-k 显示DeploymentKey，默认不显示
+
+</ul>
+
+</div>
+<footer class="footer">
+   <div class="container">
+      <p class="text-muted">骄傲地使用Vimwiki&nbsp<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1257662036'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257662036' type='text/javascript'%3E%3C/script%3E"));</script></p>
+      
+   </div>
+</footer>
+</body>
+
+
+</html>
